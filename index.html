@@ -28,21 +28,28 @@
       overflow: hidden;
     }
 
-    .typing-text {
-      font-size: 2.8rem;
-      font-weight: bold;
-      color: #00d4ff;
-      border-right: 3px solid #fff;
-      white-space: nowrap;
-      overflow: hidden;
-      display: inline-block;
-      animation: typing 3s steps(25, end), blink 0.75s step-end infinite;
+    .header-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
     }
 
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 100% }
+    .text-container {
+      max-width: 500px;
     }
+
+   .typing-text {
+  font-size: 2.8rem;
+  font-weight: bold;
+  color: #00d4ff;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+}
+
 
     @keyframes blink {
       50% { border-color: transparent }
@@ -55,6 +62,23 @@
       animation: fadeInUp 2s ease forwards;
       animation-delay: 3s;
     }
+
+
+    .image-container img {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #00d4ff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.image-container img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #00d4ff, 0 0 40px #00d4ff inset;
+}
+
 
     main {
       max-width: 850px;
@@ -141,7 +165,8 @@
       margin-top: 10px;
     }
 
-    .projects .project-item, .education .edu-item {
+    .projects .project-item,
+    .education .edu-item {
       background: #1e1e1e;
       padding: 15px;
       border-left: 4px solid #0077b6;
@@ -161,18 +186,90 @@
       from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
+
+    a {
+      text-decoration: none;
+      color: #00d4ff;
+    }
+
+
+    /* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  padding-top: 80px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.9);
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  max-width: 80%;
+  max-height: 80%;
+  border: 4px solid #00d4ff;
+  border-radius: 10px;
+}
+
+.close {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.close:hover {
+  color: #00d4ff;
+}
+
+
+@media (max-width: 768px) {
+
+  .text-container {
+    max-width: 100%;
+  }
+
+  .typing-text {
+    font-size: 2rem;
+  }
+
+  .responsive {
+    margin-top: 20px;
+  }
+
+ 
+}
+
+
   </style>
 </head>
 <body>
   <header>
-    <div class="typing-text" id="nameTyping"></div>
-    <p id="subtitle">Web Developer & Desainer</p>
+    <div class="header-container">
+       <div class="image-container">
+        <img src="img/profile.jpeg" alt="Foto Yunan" />
+      </div>
+      <div class="text-container">
+        <div class="typing-text" id="nameTyping"></div>
+        <p id="subtitle">Front End Web Developer & Student</p>
+      </div>
+    </div>
   </header>
 
   <main>
     <section class="about">
       <h2>Tentang Saya</h2>
-      <p>Saya seorang pengembang web yang antusias dengan desain modern, teknologi interaktif, dan pengalaman pengguna yang luar biasa.</p>
+      <p>Saya seorang pengembang web yang antusias dengan desain modern, teknologi interaktif, dan pengalaman pengguna yang luar biasa. Saya juga lulusan management di <a href="https://www.instagram.com/smkn2selong/?hl=en">SMKN 2 SELONG</a>, dan saya kuliah mengambil jurusan TI di <a href="https://hamzanwadi.ac.id/">Universitas Hamzanwadi</a>.</p>
     </section>
 
     <section class="skills">
@@ -194,7 +291,7 @@
           <div class="percent">0%</div>
           <p>CSS</p>
         </div>
-        <div class="skill-circle" data-percent="75">
+        <div class="skill-circle" data-percent="45">
           <svg>
             <circle cx="60" cy="60" r="50" />
             <circle cx="60" cy="60" r="50" class="progress" />
@@ -202,13 +299,13 @@
           <div class="percent">0%</div>
           <p>JavaScript</p>
         </div>
-        <div class="skill-circle" data-percent="70">
+        <div class="skill-circle responsive" data-percent="65">
           <svg>
             <circle cx="60" cy="60" r="50" />
             <circle cx="60" cy="60" r="50" class="progress" />
           </svg>
           <div class="percent">0%</div>
-          <p>UI/UX Design</p>
+          <p>PHP</p>
         </div>
       </div>
     </section>
@@ -216,8 +313,8 @@
     <section class="projects">
       <h2>Proyek</h2>
       <div class="project-item">
-        <strong>Website Toko Online</strong>
-        <p>Platform e-commerce dengan fitur belanja lengkap.</p>
+        <strong>Website Toko Online Kopi Kenangan Senja</strong>
+        <p>Platform e-commerce untuk warung kopi.</p>
       </div>
       <div class="project-item">
         <strong>Landing Page Portofolio</strong>
@@ -228,18 +325,18 @@
     <section class="education">
       <h2>Pendidikan</h2>
       <div class="edu-item">
-        <p><strong>SMK Negeri 1 NTB</strong> – RPL (2019 - 2022)</p>
+        <p><strong>SMK Negeri 2 SELONG</strong> – Management (2022 - 2025)</p>
       </div>
       <div class="edu-item">
-        <p><strong>Pelatihan Front-End</strong> – Online (2023)</p>
+        <p><strong>Universitas Hamzanwadi</strong> – Teknik Informatika (2025 - Sekarang)</p>
       </div>
     </section>
 
     <section class="contact">
       <h2>Kontak</h2>
-      <p>📞 0877-7867-8712</p>
-      <p>🏠 NTB, Indonesia</p>
-      <p>✉️ yunanwijaya21@gmail.com</p>
+      <p>📞 087788107759</p>
+      <p>🏠 Lombok Timur, NTB, Indonesia</p>
+      <p>✉️ wijayayunan8@gmail.com</p>
     </section>
   </main>
 
@@ -247,14 +344,20 @@
     <p>&copy; 2025 Yunan. Semua hak dilindungi.</p>
   </footer>
 
+  <!-- Modal Popup -->
+<div id="imageModal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="modalImage" />
+</div>
+
+
   <script>
-    // Efek scroll animasi
+    // Scroll animasi
     const sections = document.querySelectorAll("section");
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add("show");
-
           if (entry.target.classList.contains("skills")) {
             document.querySelectorAll(".skill-circle").forEach(circle => {
               animateCircle(circle);
@@ -266,8 +369,8 @@
 
     sections.forEach(section => observer.observe(section));
 
-    // Efek ketik nama
-    const namaText = "Halo, Saya Yunan";
+    // Efek ketik nama (stop setelah selesai)
+    const namaText = "Halo, Saya Yunan Wijaya";
     const typingTarget = document.getElementById("nameTyping");
     let index = 0;
 
@@ -275,12 +378,14 @@
       if (index < namaText.length) {
         typingTarget.innerHTML += namaText.charAt(index);
         index++;
-        setTimeout(typeNama, 100);
+        setTimeout(typeNama, 70);
+      } else {
+        typingTarget.style.borderRight = "none";
       }
     }
     typeNama();
 
-    // Circular skill animation
+    // Animasi lingkaran keahlian
     function animateCircle(circleEl) {
       const percentEl = circleEl.querySelector(".percent");
       const progressEl = circleEl.querySelector(".progress");
@@ -300,6 +405,28 @@
         }
       }, 15);
     }
+
+    // Modal gambar saat diklik
+const modal = document.getElementById("imageModal");
+const modalImg = document.getElementById("modalImage");
+const profileImg = document.querySelector(".image-container img");
+const closeBtn = document.querySelector(".close");
+
+profileImg.addEventListener("click", () => {
+  modal.style.display = "block";
+  modalImg.src = profileImg.src;
+});
+
+closeBtn.addEventListener("click", () => {
+  modal.style.display = "none";
+});
+
+window.addEventListener("click", (e) => {
+  if (e.target === modal) {
+    modal.style.display = "none";
+  }
+});
+
   </script>
 </body>
 </html>
