@@ -14,37 +14,56 @@
 
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f0f0f0;
-      color: #333;
+      background: #0a0a0a;
+      color: #f0f0f0;
       line-height: 1.6;
     }
 
     header {
-      background: linear-gradient(135deg, #0077b6, #00b4d8);
+      background: linear-gradient(135deg, #0d1b2a, #0077b6);
       color: white;
-      padding: 60px 20px;
+      padding: 100px 20px 60px;
       text-align: center;
       position: relative;
+      overflow: hidden;
     }
 
-    .nama {
-      font-size: 2.5rem;
-      color: #a3f7bf;
-      animation: fadeInDown 1s ease-in-out;
+    .typing-text {
+      font-size: 2.8rem;
+      font-weight: bold;
+      color: #00d4ff;
+      border-right: 3px solid #fff;
+      white-space: nowrap;
+      overflow: hidden;
+      display: inline-block;
+      animation: typing 3s steps(25, end), blink 0.75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent }
     }
 
     header p {
       font-size: 1.2rem;
-      animation: fadeInUp 1s ease-in-out;
+      margin-top: 10px;
+      opacity: 0;
+      animation: fadeInUp 2s ease forwards;
+      animation-delay: 3s;
     }
 
     main {
-      max-width: 800px;
+      max-width: 850px;
       margin: auto;
       padding: 40px 20px;
-      background: white;
-      box-shadow: 0 0 20px rgba(0,0,0,0.1);
-      margin-top: -30px;
+      background: #121212;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      margin-top: -40px;
+      border-radius: 15px;
       z-index: 1;
       position: relative;
     }
@@ -62,27 +81,30 @@
     }
 
     h2 {
-      color: #0077b6;
+      color: #00d4ff;
       margin-bottom: 15px;
       font-size: 1.5rem;
+      border-left: 4px solid #00d4ff;
+      padding-left: 10px;
     }
 
-    .contact p, .about p, .education p, .projects p {
-      margin: 8px 0;
+    p {
+      color: #ccc;
     }
 
     .skills .skill-bar {
-      margin-bottom: 15px;
+      margin-bottom: 20px;
     }
 
     .skill-bar span {
       display: block;
       font-weight: bold;
+      color: #fff;
     }
 
     .bar {
       width: 100%;
-      background: #ddd;
+      background: #333;
       border-radius: 10px;
       overflow: hidden;
       margin-top: 5px;
@@ -96,78 +118,38 @@
       transition: width 1s ease-in-out;
     }
 
-    .projects .project-item {
-      margin-bottom: 15px;
-      padding: 10px;
+    .projects .project-item, .education .edu-item {
+      background: #1e1e1e;
+      padding: 15px;
       border-left: 4px solid #0077b6;
-      background: #f8f8f8;
-    }
-
-    .education .edu-item {
       margin-bottom: 15px;
-      border-left: 3px solid #0077b6;
-      padding-left: 10px;
+      border-radius: 8px;
     }
 
     footer {
-      background: #222;
-      color: white;
+      background: #0d1b2a;
+      color: #fff;
       text-align: center;
       padding: 20px;
       margin-top: 40px;
     }
 
-    @keyframes fadeInDown {
-      from {
-        opacity: 0;
-        transform: translateY(-30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
     @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .typing {
-      border-right: 2px solid white;
-      display: inline;
-      white-space: nowrap;
-      overflow: hidden;
-      width: 0;
-      animation: typing 4s steps(40, end), blink 0.75s step-end infinite;
-    }
-
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 100% }
-    }
-
-    @keyframes blink {
-      50% { border-color: transparent }
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
   <header>
-    <h1 class="nama">Halo, Saya Yunan</h1>
-    <p><span id="typing" class="typing"></span></p>
+    <div class="typing-text" id="nameTyping"></div>
+    <p id="subtitle">Web Developer & Desainer</p>
   </header>
 
   <main>
     <section class="about">
       <h2>Tentang Saya</h2>
-      <p>Saya seorang pengembang web yang antusias dengan desain modern dan teknologi interaktif.</p>
+      <p>Saya seorang pengembang web yang antusias dengan desain modern, teknologi interaktif, dan pengalaman pengguna yang luar biasa.</p>
     </section>
 
     <section class="skills">
@@ -185,7 +167,7 @@
         <div class="bar"><div class="bar-fill" data-skill="75%"></div></div>
       </div>
       <div class="skill-bar">
-        <span>Design UI/UX</span>
+        <span>UI/UX Design</span>
         <div class="bar"><div class="bar-fill" data-skill="70%"></div></div>
       </div>
     </section>
@@ -194,21 +176,21 @@
       <h2>Proyek</h2>
       <div class="project-item">
         <strong>Website Toko Online</strong>
-        <p>Membuat toko online dengan fitur keranjang dan checkout.</p>
+        <p>Platform e-commerce dengan fitur belanja lengkap.</p>
       </div>
       <div class="project-item">
         <strong>Landing Page Portofolio</strong>
-        <p>Halaman portofolio pribadi dengan animasi dan efek scroll.</p>
+        <p>Halaman pribadi dengan animasi dan desain modern.</p>
       </div>
     </section>
 
     <section class="education">
       <h2>Pendidikan</h2>
       <div class="edu-item">
-        <p><strong>SMK Negeri 1 NTB</strong> – Rekayasa Perangkat Lunak (2019 - 2022)</p>
+        <p><strong>SMK Negeri 1 NTB</strong> – RPL (2019 - 2022)</p>
       </div>
       <div class="edu-item">
-        <p><strong>Pelatihan Front-End</strong> – Online Course (2023)</p>
+        <p><strong>Pelatihan Front-End</strong> – Online (2023)</p>
       </div>
     </section>
 
@@ -232,7 +214,7 @@
         if (entry.isIntersecting) {
           entry.target.classList.add("show");
 
-          // Isi bar skill jika section tampil
+          // Isi skill bar saat terlihat
           if (entry.target.classList.contains('skills')) {
             const bars = entry.target.querySelectorAll('.bar-fill');
             bars.forEach(bar => {
@@ -246,10 +228,19 @@
 
     sections.forEach(section => observer.observe(section));
 
-    // Efek ketik
-    const typingText = "Web Developer & Desainer";
-    const typingElement = document.getElementById("typing");
-    typingElement.textContent = typingText;
+    // Efek ketik nama
+    const namaText = "Halo, Saya Yunan";
+    const typingTarget = document.getElementById("nameTyping");
+    let index = 0;
+
+    function typeNama() {
+      if (index < namaText.length) {
+        typingTarget.innerHTML += namaText.charAt(index);
+        index++;
+        setTimeout(typeNama, 100);
+      }
+    }
+    typeNama();
   </script>
 </body>
 </html>
