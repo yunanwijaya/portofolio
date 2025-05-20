@@ -3,32 +3,253 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Profil Saya</title>
-  <link rel="stylesheet" href="css/style.css" />
-  
+  <title>Portofolio Yunan</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f0f0f0;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0077b6, #00b4d8);
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .nama {
+      font-size: 2.5rem;
+      color: #a3f7bf;
+      animation: fadeInDown 1s ease-in-out;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      animation: fadeInUp 1s ease-in-out;
+    }
+
+    main {
+      max-width: 800px;
+      margin: auto;
+      padding: 40px 20px;
+      background: white;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      margin-top: -30px;
+      z-index: 1;
+      position: relative;
+    }
+
+    section {
+      margin-bottom: 50px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s ease;
+    }
+
+    section.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h2 {
+      color: #0077b6;
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+    }
+
+    .contact p, .about p, .education p, .projects p {
+      margin: 8px 0;
+    }
+
+    .skills .skill-bar {
+      margin-bottom: 15px;
+    }
+
+    .skill-bar span {
+      display: block;
+      font-weight: bold;
+    }
+
+    .bar {
+      width: 100%;
+      background: #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 5px;
+    }
+
+    .bar-fill {
+      height: 10px;
+      background: #00b4d8;
+      width: 0;
+      border-radius: 10px;
+      transition: width 1s ease-in-out;
+    }
+
+    .projects .project-item {
+      margin-bottom: 15px;
+      padding: 10px;
+      border-left: 4px solid #0077b6;
+      background: #f8f8f8;
+    }
+
+    .education .edu-item {
+      margin-bottom: 15px;
+      border-left: 3px solid #0077b6;
+      padding-left: 10px;
+    }
+
+    footer {
+      background: #222;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .typing {
+      border-right: 2px solid white;
+      display: inline;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0;
+      animation: typing 4s steps(40, end), blink 0.75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent }
+    }
+  </style>
 </head>
 <body>
   <header>
     <h1 class="nama">Halo, Saya Yunan</h1>
-    <p>Web Developer & Desainer</p>
+    <p><span id="typing" class="typing"></span></p>
   </header>
 
   <main>
     <section class="about">
       <h2>Tentang Saya</h2>
-      <p>Saya seorang pengembang web yang suka membuat tampilan menarik dan fungsional.</p>
+      <p>Saya seorang pengembang web yang antusias dengan desain modern dan teknologi interaktif.</p>
+    </section>
+
+    <section class="skills">
+      <h2>Keahlian</h2>
+      <div class="skill-bar">
+        <span>HTML</span>
+        <div class="bar"><div class="bar-fill" data-skill="90%"></div></div>
+      </div>
+      <div class="skill-bar">
+        <span>CSS</span>
+        <div class="bar"><div class="bar-fill" data-skill="85%"></div></div>
+      </div>
+      <div class="skill-bar">
+        <span>JavaScript</span>
+        <div class="bar"><div class="bar-fill" data-skill="75%"></div></div>
+      </div>
+      <div class="skill-bar">
+        <span>Design UI/UX</span>
+        <div class="bar"><div class="bar-fill" data-skill="70%"></div></div>
+      </div>
+    </section>
+
+    <section class="projects">
+      <h2>Proyek</h2>
+      <div class="project-item">
+        <strong>Website Toko Online</strong>
+        <p>Membuat toko online dengan fitur keranjang dan checkout.</p>
+      </div>
+      <div class="project-item">
+        <strong>Landing Page Portofolio</strong>
+        <p>Halaman portofolio pribadi dengan animasi dan efek scroll.</p>
+      </div>
+    </section>
+
+    <section class="education">
+      <h2>Pendidikan</h2>
+      <div class="edu-item">
+        <p><strong>SMK Negeri 1 NTB</strong> – Rekayasa Perangkat Lunak (2019 - 2022)</p>
+      </div>
+      <div class="edu-item">
+        <p><strong>Pelatihan Front-End</strong> – Online Course (2023)</p>
+      </div>
     </section>
 
     <section class="contact">
       <h2>Kontak</h2>
-      <p>NO:087778678712
-        <P>Alamat:Ntb
-      <p>Email: yunanwijaya21@gmail.com</p>
+      <p>📞 0877-7867-8712</p>
+      <p>🏠 NTB, Indonesia</p>
+      <p>✉️ yunanwijaya21@gmail.com</p>
     </section>
   </main>
 
-  <footer class="footer">
+  <footer>
     <p>&copy; 2025 Yunan. Semua hak dilindungi.</p>
   </footer>
+
+  <script>
+    // Efek scroll
+    const sections = document.querySelectorAll("section");
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+
+          // Isi bar skill jika section tampil
+          if (entry.target.classList.contains('skills')) {
+            const bars = entry.target.querySelectorAll('.bar-fill');
+            bars.forEach(bar => {
+              const width = bar.getAttribute('data-skill');
+              bar.style.width = width;
+            });
+          }
+        }
+      });
+    }, { threshold: 0.3 });
+
+    sections.forEach(section => observer.observe(section));
+
+    // Efek ketik
+    const typingText = "Web Developer & Desainer";
+    const typingElement = document.getElementById("typing");
+    typingElement.textContent = typingText;
+  </script>
 </body>
 </html>
