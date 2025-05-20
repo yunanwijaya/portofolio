@@ -92,30 +92,53 @@
       color: #ccc;
     }
 
-    .skills .skill-bar {
-      margin-bottom: 20px;
+    .skill-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      gap: 30px;
+      margin-top: 20px;
     }
 
-    .skill-bar span {
-      display: block;
-      font-weight: bold;
-      color: #fff;
+    .skill-circle {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      text-align: center;
+      color: white;
     }
 
-    .bar {
+    .skill-circle svg {
+      width: 120px;
+      height: 120px;
+      transform: rotate(-90deg);
+    }
+
+    .skill-circle circle {
+      fill: none;
+      stroke-width: 10;
+      stroke: #333;
+    }
+
+    .skill-circle .progress {
+      stroke: #00b4d8;
+      stroke-dasharray: 314;
+      stroke-dashoffset: 314;
+      transition: stroke-dashoffset 1.5s ease;
+    }
+
+    .skill-circle .percent {
+      position: absolute;
+      top: 35px;
+      left: 0;
       width: 100%;
-      background: #333;
-      border-radius: 10px;
-      overflow: hidden;
-      margin-top: 5px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #00d4ff;
     }
 
-    .bar-fill {
-      height: 10px;
-      background: #00b4d8;
-      width: 0;
-      border-radius: 10px;
-      transition: width 1s ease-in-out;
+    .skill-circle p {
+      margin-top: 10px;
     }
 
     .projects .project-item, .education .edu-item {
@@ -154,21 +177,39 @@
 
     <section class="skills">
       <h2>Keahlian</h2>
-      <div class="skill-bar">
-        <span>HTML</span>
-        <div class="bar"><div class="bar-fill" data-skill="90%"></div></div>
-      </div>
-      <div class="skill-bar">
-        <span>CSS</span>
-        <div class="bar"><div class="bar-fill" data-skill="85%"></div></div>
-      </div>
-      <div class="skill-bar">
-        <span>JavaScript</span>
-        <div class="bar"><div class="bar-fill" data-skill="75%"></div></div>
-      </div>
-      <div class="skill-bar">
-        <span>UI/UX Design</span>
-        <div class="bar"><div class="bar-fill" data-skill="70%"></div></div>
+      <div class="skill-container">
+        <div class="skill-circle" data-percent="90">
+          <svg>
+            <circle cx="60" cy="60" r="50" />
+            <circle cx="60" cy="60" r="50" class="progress" />
+          </svg>
+          <div class="percent">0%</div>
+          <p>HTML</p>
+        </div>
+        <div class="skill-circle" data-percent="85">
+          <svg>
+            <circle cx="60" cy="60" r="50" />
+            <circle cx="60" cy="60" r="50" class="progress" />
+          </svg>
+          <div class="percent">0%</div>
+          <p>CSS</p>
+        </div>
+        <div class="skill-circle" data-percent="75">
+          <svg>
+            <circle cx="60" cy="60" r="50" />
+            <circle cx="60" cy="60" r="50" class="progress" />
+          </svg>
+          <div class="percent">0%</div>
+          <p>JavaScript</p>
+        </div>
+        <div class="skill-circle" data-percent="70">
+          <svg>
+            <circle cx="60" cy="60" r="50" />
+            <circle cx="60" cy="60" r="50" class="progress" />
+          </svg>
+          <div class="percent">0%</div>
+          <p>UI/UX Design</p>
+        </div>
       </div>
     </section>
 
@@ -207,19 +248,16 @@
   </footer>
 
   <script>
-    // Efek scroll
+    // Efek scroll animasi
     const sections = document.querySelectorAll("section");
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add("show");
 
-          // Isi skill bar saat terlihat
-          if (entry.target.classList.contains('skills')) {
-            const bars = entry.target.querySelectorAll('.bar-fill');
-            bars.forEach(bar => {
-              const width = bar.getAttribute('data-skill');
-              bar.style.width = width;
+          if (entry.target.classList.contains("skills")) {
+            document.querySelectorAll(".skill-circle").forEach(circle => {
+              animateCircle(circle);
             });
           }
         }
@@ -241,6 +279,27 @@
       }
     }
     typeNama();
+
+    // Circular skill animation
+    function animateCircle(circleEl) {
+      const percentEl = circleEl.querySelector(".percent");
+      const progressEl = circleEl.querySelector(".progress");
+      const targetPercent = +circleEl.getAttribute("data-percent");
+      const radius = 50;
+      const circumference = 2 * Math.PI * radius;
+      let current = 0;
+
+      const interval = setInterval(() => {
+        if (current <= targetPercent) {
+          const offset = circumference - (current / 100) * circumference;
+          progressEl.style.strokeDashoffset = offset;
+          percentEl.textContent = current + "%";
+          current++;
+        } else {
+          clearInterval(interval);
+        }
+      }, 15);
+    }
   </script>
 </body>
 </html>
